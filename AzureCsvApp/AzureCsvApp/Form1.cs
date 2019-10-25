@@ -17,40 +17,7 @@ namespace AzureCsvApp
         public Form1()
         {
             InitializeComponent();
-            try
-            {
-                using (var connection = GetConnection("customer"))
-                {
-                    // データベースの接続開始
-                    connection.Open();
 
-                    // トランザクション開始
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            using (var adapter = new SqlDataAdapter())
-                            {
-                                DateTime dtNow = DateTime.Now;
-                                SqlCommand Cmd = new SqlCommand("", connection) { Transaction = transaction };
-                                string query = "";
-                                query = "insert into Azure_details (SpCompanyName,SpDomain,SpSubDomain,PurchaseCompanyCode,PurchaseCompanyName,DateOfAcquisition,StartUsagePeriod,FinishUsagePeriod,ElementName,CategoyName,SubCategoryName,Area,ResouceId,IdmSubsucriptionId,Tag,UnitName,InstanceDataResourceUri,InstanceDataLocation,InstanceDataPartNumber,InStanceDataOrderNumber,Domain,SubscriptionId,PurchaseValue,UsafeFee,PurchasePrice) values (@SpCompanyName,@SpDomain,@SpSubDomain,@PurchaseCompanyCode,@PurchaseCompanyName,@DateofAcquisition,@StartUsagePeriod,@FinishUsagePeriod,@ElementName,@CategoyName,@SubCategoryName,@Area,@ResouceId,@IdmSubsucriptionId,@Tag,@UnitName,@InstanceDataResourceUri,@InstanceDataLocation,@InstanceDataPartNumber,@InStanceDataOrderNumber,@Domain,@SubscriptionId,@PurchaseValue,@UsafeFee,@PurchasePrice)";
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            // ロールバック
-                            transaction.Rollback();
-                            throw (ex);
-                        }
-                        finally
-                        {
-                            connection.Close();
-                        }
-                    }
-
-                }
-            }
         }
 
         private void Button1_Click(object sender, EventArgs e)

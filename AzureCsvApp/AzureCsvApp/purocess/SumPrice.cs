@@ -34,14 +34,15 @@ namespace AzureCsvApp
 
                                 SqlCommand com = new SqlCommand(query, conection);
                                 SqlDataReader sdr = com.ExecuteReader();
-                                //int uId_Or = com.GetOrdinal("PurchasePrice");
 
                                 while (sdr.Read() == true)
                                 {
-                                    //Decimal uId = sdr.GetDecimal(PurchasePrice);
-                                    var SumPrice = sdr["sumprice"].ToString();
+                                    var SumPrice = decimal.Parse(sdr["sumprice"].ToString());
+                                    decimal ret1 = Math.Ceiling(SumPrice);
 
-                                    MessageBox.Show(SumPrice);
+                                    var SumPrice2 = ret1.ToString();
+
+                                    MessageBox.Show(SumPrice2);
 
                                     MessageBox.Show("全体の合計の値を実行しました");
                                 }

@@ -40,9 +40,13 @@ namespace AzureCsvApp
                                 while (sdr.Read() == true)
                                 {
                                     //Decimal uId = sdr.GetDecimal(PurchasePrice);
-                                    var SumPrice = sdr["sumleadprice"].ToString();
+                                    var SumLeadPrice = decimal.Parse(sdr["sumleadprice"].ToString());
 
-                                    MessageBox.Show(SumPrice);
+                                    decimal ret1 = Math.Ceiling(SumLeadPrice);
+
+                                    var SumPrice2 = ret1.ToString();
+
+                                    MessageBox.Show(SumPrice2);
 
                                     MessageBox.Show("LEADの合計の値を実行しました");
                                 }
